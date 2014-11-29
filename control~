@@ -1,9 +1,0 @@
-Package: com.broganminer.sprinttimer
-Name: Sprint Timer
-Depends: mobilesubstrate
-Version: 1.1
-Architecture: iphoneos-arm
-Description: Accurately record your sprinting time.
-Maintainer: Brogan Miner
-Author: Brogan Miner
-Section: Tweaks
