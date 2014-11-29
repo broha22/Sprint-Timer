@@ -8,5 +8,8 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 after-install::
 	install.exec "killall -9 MobileTimer"
+<<<<<<< HEAD
 SUBPROJECTS += sprinttimerprefs
 include $(THEOS_MAKE_PATH)/aggregate.mk
+=======
+>>>>>>> 38d529f5cc238a3092714f3fe86711e89f31fce3
