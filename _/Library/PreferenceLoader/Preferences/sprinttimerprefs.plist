@@ -1,0 +1,10 @@
+{
+    entry = {
+	bundle = sprinttimerprefs;
+	cell = PSLinkCell;
+	detail = sprinttimerprefsListController;
+	icon = sprinttimer-icon.png;
+	isController = 1;
+	label = "Sprint Timer";
+    };
+}
