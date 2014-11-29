@@ -1,8 +1,6 @@
 #import <CoreMotion/CoreMotion.h>
 @interface MTStopwatchControlsView : UIView
 @end
-@interface MTStopwatchController : NSObject
-@end
 @interface MTCircleButton : UIButton
   - (id)initWithSize:(unsigned long long)arg1;
   - (void)setColor:(unsigned long long)arg1 forState:(unsigned long long)arg2;
@@ -15,11 +13,8 @@
 static MTCircleButton *sprintButton;
 static MTStopwatchController *controller;
 static BOOL timerOn;
-<<<<<<< HEAD
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define DEVICE_WIDTH [UIScreen mainScreen].bounds.size.width
-=======
->>>>>>> 38d529f5cc238a3092714f3fe86711e89f31fce3
 static CMMotionManager *motionManager;
 %hook MTStopwatchControlsView
   - (id)initWithTarget:(id)arg1 {
@@ -31,7 +26,6 @@ static CMMotionManager *motionManager;
   }
   - (void)layoutSubviews {
 	%orig;
-<<<<<<< HEAD
 	UIView *buttonsView;
 	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
 	  buttonsView = self;
@@ -41,12 +35,7 @@ static CMMotionManager *motionManager;
 	}
 	float space = (DEVICE_WIDTH - 225)/4;
 	sprintButton.frame = CGRectMake(space,21,75,75);
-=======
 		
-	UIView *buttonsView = MSHookIvar<UIView *>(self,"_buttonsBackgroundView");
-
-	sprintButton.frame = CGRectMake(24,21,75,75);
->>>>>>> 38d529f5cc238a3092714f3fe86711e89f31fce3
 	[sprintButton setTitle:@"Ready" forState:UIControlStateHighlighted];
 	[(MTCircleButton *)sprintButton setColor:2 forState:UIControlStateHighlighted];
 	[sprintButton setTitle:@"Sprint" forState:UIControlStateNormal];
@@ -63,18 +52,16 @@ static CMMotionManager *motionManager;
 	MTCircleButton *rightButton = MSHookIvar<MTCircleButton *>(controller, "_rightButton");
 	MTCircleButton *leftButton = MSHookIvar<MTCircleButton *>(controller, "_leftButton");
 		
-<<<<<<< HEAD
+
 	leftButton.frame = CGRectMake((2 * space) + 75,21,75,75);
 	rightButton.frame = CGRectMake((2 * space) + 150,21,75,75);
+	
 	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
 	  sprintButton.frame = CGRectMake(space,204,75,75);
 	  leftButton.frame = CGRectMake((2 * space) + 75,204,75,75);
 	  rightButton.frame = CGRectMake((3 * space) + 150,204,75,75);
 	}
-=======
-	leftButton.frame = CGRectMake(123,21,75,75);
-	rightButton.frame = CGRectMake(221,21,75,75);
->>>>>>> 38d529f5cc238a3092714f3fe86711e89f31fce3
+
    }
  %new
  - (void)buttonHold {
@@ -82,11 +69,11 @@ static CMMotionManager *motionManager;
     motionManager = [[CMMotionManager alloc] init];
     [motionManager setAccelerometerUpdateInterval:0.01];
     [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler: ^(CMAccelerometerData *data, NSError *error){
-<<<<<<< HEAD
+
       if (data.acceleration.y > 1 && !timerOn) {
-=======
+
       if (data.acceleration.y > 1) {
->>>>>>> 38d529f5cc238a3092714f3fe86711e89f31fce3
+
 	[target startLapTimer];
 	[sprintButton setTitle:@"Release" forState:UIControlStateNormal];
 	[(MTCircleButton *)sprintButton setColor:1 forState:UIControlStateNormal];
@@ -124,16 +111,14 @@ static CMMotionManager *motionManager;
   - (void)setColor:(unsigned long long)arg1 forState:(unsigned long long)arg2 {
     if (arg1 == 4) {
       [self setTitleColor:[UIColor orangeColor] forState:arg2];
-<<<<<<< HEAD
+
       if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
 	[self setBackgroundImage:[UIImage imageWithContentsOfFile:@"/Applications/MobileTimer.app/circle_borderless.png"] forState:arg2];
       }
       else {
 	[self setBackgroundImage:[UIImage imageWithContentsOfFile:@"/Applications/MobileTimer.app/circle_orange.png"] forState:arg2];
       }
-=======
-      [self setBackgroundImage:[UIImage imageWithContentsOfFile:@"/Applications/MobileTimer.app/circle_orange.png"] forState:arg2];
->>>>>>> 38d529f5cc238a3092714f3fe86711e89f31fce3
+
     }
     else {
       %orig;
